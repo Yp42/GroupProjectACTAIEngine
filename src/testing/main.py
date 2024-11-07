@@ -8,11 +8,11 @@ from testing.crew import TestingCrew
 # interpolate any tasks and agents information
 
 
-def run():
+def run(stock):
     """
     Run the crew.
     """
-    inputs = {"topic": "Tesla"}
+    inputs = {"topic": stock}
     TestingCrew().crew().kickoff(inputs=inputs)
 
 
