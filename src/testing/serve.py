@@ -6,24 +6,23 @@ from flask import Flask
 app = Flask(__name__)
 
 
-@app.route("/stock=<stock>")
-def get_response(stock):
-    stock = str(stock)
-    stock = stock.lower()
+@app.route("/asset=<asset>")
+def get_response(asset):
+    asset = str(asset).upper()
 
     try:
-        reportExists = os.path.exists(f"../../reports/{stock}.md")
+        reportExists = os.path.exists(f"../../reports/{asset}.md")
     except:
         print("No pre-existing report")
 
     if not reportExists:
-        main.run(stock)
-        os.rename("report.md", f"../../reports/{stock}.md")
+        main.run(asset)
+        os.rename("report.md", f"../../reports/{asset}.md")
 
-    file = open(f"../../reports/{stock}.md")
+    file = open(f"../../reports/{asset}.md")
     response = file.read()
 
-    return {"input": stock, "response": response}
+    return {"input": asset, "response": response}
 
 
 app.run()
